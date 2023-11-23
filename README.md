@@ -9,12 +9,12 @@
 ### Frontend Demo with HMR
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/80125540/285106196-ead02944-7ee8-4812-b028-a2d02ffb6fac.gif" alt="frontend" style="width: 75%; height: auto;">
+  <img src="https://user-images.githubusercontent.com/80125540/285106196-ead02944-7ee8-4812-b028-a2d02ffb6fac.gif" alt="frontend" style="width: 75%; height: auto;" title="Click for full size">
 </p>
 
 ### Backend Demo with nodemon
 <p align="center">
-  <img src="  https://user-images.githubusercontent.com/80125540/285107388-070c840e-ca12-4a08-bf6f-8ee209d310ac.gif" alt="backend" style="width: 75%; height: auto;">
+  <img src="https://user-images.githubusercontent.com/80125540/285107388-070c840e-ca12-4a08-bf6f-8ee209d310ac.gif" alt="backend" style="width: 75%; height: auto;"  title="Click for full size">
 </p>
 
 ### End-to-end Demo
