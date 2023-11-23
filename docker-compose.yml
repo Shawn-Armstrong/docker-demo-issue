@@ -6,25 +6,25 @@ services:
     ports:
       - "3000:3000" 
     volumes:
-      - ./frontend:/app 
+      - ./frontend/src:/app/src
       - /app/node_modules 
     command: npm run dev
     environment:
       - NODE_ENV=development
     networks:
       - my-network
-  
+
   backend:
-    build: ./backend
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./backend:/usr/src/app 
-      - /usr/src/app/node_modules 
-    networks:
-      - my-network
-    depends_on:
-      - database
+      build: ./backend
+      ports:
+        - "5000:5000"
+      volumes:
+        - ./backend:/usr/src/app 
+        - /usr/src/app/node_modules 
+      networks:
+        - my-network
+      depends_on:
+        - database
 
   database:
     image: postgres

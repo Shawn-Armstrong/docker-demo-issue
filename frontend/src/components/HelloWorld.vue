@@ -5,7 +5,8 @@
 
       <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
       <br>
-      <h1 class="text-h2 font-weight-bold">Toto World<br><br>
+      <h1 class="text-h2 font-weight-bold"><s>Vuetify lol</s><br>
+        Toto World<br><br>
       <img src="https://i.ibb.co/8YbFFpP/18743762b82372fc51e3293745f67f4.png" alt="18743762b82372fc51e3293745f67f4" border="0"><br />
       </h1>
 
