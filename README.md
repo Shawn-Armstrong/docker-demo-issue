@@ -29,7 +29,7 @@
 - Clone this repository
 
     ```Console
-    git clone <URL>
+    git clone https://github.com/Shawn-Armstrong/docker-demo-issue.git
     ```
 
 - Launch the multi-container application:
