@@ -1,3 +1,6 @@
+HMR code:
+https://github.com/Shawn-Armstrong/docker-demo-issue/blob/82c606060f2b26716b971f2b47791cc7d5c209fa/frontend/vite.config.js#L47-L52
+
 ```diff
   <!-- 
   ORIGINAL LOCATION: ..\frontend\src\components\HelloWorld.vue

@@ -27,11 +27,13 @@
 
 ### Instructions
 - Clone this repository
+
     ```Console
     git clone <URL>
     ```
 
-- Launch the container
+- Launch the multi-container application:
+
     ```Console
     docker-compose up
     ```
@@ -42,7 +44,7 @@
     - Database is listening on port 5432
 
 ## Issues
-- Frontend HMR intermittently fails after attempting to add AJAX call to backend. I suspect the AJAX call isn't responsible for the failure as I never triggered the event; rather, the HMR went crazy while adding the code. See suspect directory for code. 
+- **Frontend HMR intermittently fails** after attempting to add AJAX call to backend. I suspect the AJAX call isn't responsible for the failure as I never triggered the event; rather, the HMR went crazy while adding the code. See suspect directory for code. 
   - When attempting to restart the container Docker give the following notification:
       
     ![image](https://user-images.githubusercontent.com/80125540/285111650-9e6b758f-90fa-4790-a6c6-7eba1f8ec764.png)
@@ -66,5 +68,8 @@
     ![image](https://user-images.githubusercontent.com/80125540/285117189-7d20aae5-efe7-47e2-b523-49b11c3bc495.png)
   - After ending tasks and restarting Docker notifies further errors
     ![image](https://user-images.githubusercontent.com/80125540/285117512-113a299c-e417-4aff-a99b-1234a1813978.png)
-  
+  - HMR is supported with the following changes:
+
+    https://github.com/Shawn-Armstrong/docker-demo-issue/blob/82c606060f2b26716b971f2b47791cc7d5c209fa/frontend/vite.config.js#L47-L52
+  - Both restart and windows shutdown were conducted but Docker continues to hang on start up
     
