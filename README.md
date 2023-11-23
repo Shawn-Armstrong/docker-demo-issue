@@ -72,4 +72,9 @@
 
     https://github.com/Shawn-Armstrong/docker-demo-issue/blob/82c606060f2b26716b971f2b47791cc7d5c209fa/frontend/vite.config.js#L47-L52
   - Both restart and windows shutdown were conducted but Docker continues to hang on start up
-    
+  - Host operating system
+
+    ```Console
+    Windows 11 Home 64-bit, 22H2
+    AMD Ryzen 7, X86-64
+    ```
