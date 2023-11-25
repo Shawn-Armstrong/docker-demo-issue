@@ -7,6 +7,10 @@
       <br>
       <h1 class="text-h2 font-weight-bold"><s>Vuetify lol</s><br>
         Toto World<br><br>
+
+      <button @click="fetchMessage">Get Message!</button>
+      <p>{{ message }}</p>
+
       <img src="https://i.ibb.co/8YbFFpP/18743762b82372fc51e3293745f67f4.png" alt="18743762b82372fc51e3293745f67f4" border="0"><br />
       </h1>
 
@@ -73,6 +77,30 @@
   </v-container>
 </template>
 
-<script setup>
-  //
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      message: ''
+    }
+  },
+  methods: {
+    fetchMessage() {
+      console.log("Attempting to fetch message...");
+      axios.get('http://localhost:5000/hello')
+        .then(response => {
+          this.message = response.data;
+          console.log("Message received:", this.message);
+        })
+        .catch(error => {
+          console.error("Error fetching message:", error);
+        });
+    }
+  },
+  mounted() {
+    console.log("Component mounted.");
+  }
+}
 </script>

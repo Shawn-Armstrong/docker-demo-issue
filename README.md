@@ -78,3 +78,5 @@
     Windows 11 Home 64-bit, 22H2
     AMD Ryzen 7, X86-64
     ```
+    ### Solution
+    It looks like WSL2 crashed. After I restarted WSL then I was able to restart Docker. The application worked at restart. I suspect Vite's polling setting is too resource intensive. 
