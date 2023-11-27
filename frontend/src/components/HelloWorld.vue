@@ -7,9 +7,10 @@
       <br>
       <h1 class="text-h2 font-weight-bold"><s>Vuetify lol</s><br>
         Toto World<br><br>
-
-      <button @click="fetchMessage">Get Message!</button>
-      <p>{{ message }}</p>
+      <button @click="fetchData">Get Data</button>
+      <ul>
+        <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+      </ul>
 
       <img src="https://i.ibb.co/8YbFFpP/18743762b82372fc51e3293745f67f4.png" alt="18743762b82372fc51e3293745f67f4" border="0"><br />
       </h1>
@@ -77,30 +78,30 @@
   </v-container>
 </template>
 
+
 <script>
 import axios from 'axios';
 
 export default {
   data() {
     return {
-      message: ''
+      items: []
     }
   },
   methods: {
-    fetchMessage() {
-      console.log("Attempting to fetch message...");
-      axios.get('http://localhost:5000/hello')
+    fetchData() {
+      axios.get('http://localhost:5000/data')
         .then(response => {
-          this.message = response.data;
-          console.log("Message received:", this.message);
+          this.items = response.data;
         })
         .catch(error => {
-          console.error("Error fetching message:", error);
+          console.error('There was an error!', error);
         });
     }
   },
+  // Fetch data when the component is mounted
   mounted() {
-    console.log("Component mounted.");
+    this.fetchData();
   }
 }
 </script>
