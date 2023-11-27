@@ -1,7 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const port = 5000;
+const SECRET_KEY = 'your_secret_key';
 
 app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // Enable body-parser
@@ -10,7 +13,7 @@ app.get('/hello', (req, res) => {
   res.send('Hello World!');
 });
 
-app.post('/login', (req, res) => {
+app.post('/login2', (req, res) => {
   // This is a simplistic example. You should validate the credentials and handle errors properly.
   // A real implementation should use password hashing and a more secure means of validation.
 
@@ -23,9 +26,61 @@ app.post('/login', (req, res) => {
   }
 });
 
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Check if the user exists in the database
+    const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    
+    if (userResult.rows.length === 0) {
+      return res.status(401).send('User does not exist');
+    }
+
+    const user = userResult.rows[0];
+
+    // Compare the provided password with the stored hash
+    const isMatch = await bcrypt.compare(password, user.password_hash);
+
+    if (!isMatch) {
+      return res.status(401).send('Invalid credentials');
+    }
+
+    // Create a token (for JWT, use jwt.sign)
+    const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: '1h' });
+
+    // Send the token to the client
+    res.json({ token });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error during login');
+  }
+});
+
 app.get('/', (req, res) => res.send('Toto is a yorkie!!!!'));
 
+app.post('/register', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
 
+    // Hash the password - the salt is automatically generated and included in the hash
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert the new user into the database
+    const result = await pool.query(
+      'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id',
+      [username, email, hashedPassword]
+    );
+
+    // Respond with the ID of the new user
+    res.status(201).json({ userId: result.rows[0].id });
+  } catch (err) {
+    console.error(err);
+    // Handle errors, such as sending a 400 if the user already exists
+    res.status(500).send('Server error');
+  }
+});
 
 app.listen(port, () => console.log(`Backend server listening on port ${port}!`));
 
